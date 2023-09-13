@@ -2,7 +2,7 @@ body {
   background-color: black;
 }
 .card {
-  margin: 70px auto;
+  margin: 70px auto 15px;
   box-shadow: 5px 8px 10px rgba(242, 54, 69, 0.8);
   max-width: 800px;
   border: solid 1px #f23645;
@@ -181,4 +181,17 @@ hr {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 100, "GRAD" -25, "opsz" 20;
+}
+
+.credits {
+  text-align: center;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 11px;
+  color: #71ffff;
+  opacity: 0.7;
+}
+
+a {
+  color: #f8ef02;
+  margin: 0;
 }
