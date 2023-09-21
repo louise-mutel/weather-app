@@ -87,6 +87,7 @@ body {
   font-family: "Rajdhani", sans-serif;
   color: #f23645;
   text-shadow: 3px 0px 3px rgba(248, 239, 2, 0.3);
+  text-transform: capitalize;
 }
 .humidity,
 .wind {

@@ -26,6 +26,12 @@ function showWeather(response) {
   let windSpeed = document.querySelector(".wind");
   let wind = Math.round(response.data.wind.speed);
   windSpeed.innerHTML = `Wind: ${wind}m/s`;
+  let currentWeatherIcon = document.querySelector("#current-weather-icon");
+  currentWeatherIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  currentWeatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
 search("Luleå");
@@ -63,8 +69,6 @@ function getTime() {
   let minutes = String(now.getMinutes()).padStart(2, "0");
   time.innerHTML = `${currentDay}, ${hour}:${minutes}`;
 }
-
-console.log(getTime());
 
 function changeToFahrenheit(event) {
   event.preventDefault();
