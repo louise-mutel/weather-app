@@ -16,9 +16,10 @@ function search(city) {
 function showWeather(response) {
   let cityName = document.querySelector("h1");
   cityName.innerHTML = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
-  let currentTemperature = document.querySelector(".current-temperature");
-  currentTemperature.innerHTML = `${temperature}°C`;
+  celsiusTemperature = response.data.main.temp;
+  let temperature = Math.round(celsiusTemperature);
+  let currentTemperature = document.querySelector("#current-temperature");
+  currentTemperature.innerHTML = `${temperature}`;
   let weatherDescription = document.querySelector(".current-weather");
   weatherDescription.innerHTML = response.data.weather[0].description;
   let humidity = document.querySelector(".humidity");
@@ -33,8 +34,6 @@ function showWeather(response) {
   );
   currentWeatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
-
-search("Luleå");
 
 function showPosition(position) {
   let apiKey = "1ee4264117b73d2263eecd562f31ef5c";
@@ -72,18 +71,27 @@ function getTime() {
 
 function changeToFahrenheit(event) {
   event.preventDefault();
-  let tConversion = document.querySelector("#current-temperature");
-  tConversion.innerHTML = 60;
+  let temperatureElement = document.querySelector("#current-temperature");
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function changeToCelsius(event) {
   event.preventDefault();
-  let tConversion = document.querySelector("#current-temperature");
-  tConversion.innerHTML = 18;
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
+  let temperatureElement = document.querySelector("#current-temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+
+let celsiusTemperature = null;
 
 let fahrenheit = document.querySelector(".fahrenheit");
 fahrenheit.addEventListener("click", changeToFahrenheit);
 
-let celcius = document.querySelector(".celsius");
-celcius.addEventListener("click", changeToCelsius);
+let celsius = document.querySelector(".celsius");
+celsius.addEventListener("click", changeToCelsius);
+
+search("Luleå");
