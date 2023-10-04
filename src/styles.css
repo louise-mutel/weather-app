@@ -97,88 +97,68 @@ body {
   line-height: 20px;
   text-shadow: 3px 0px 3px rgba(248, 239, 2, 0.3);
 }
-img {
+
+#current-weather-icon {
+  display: block;
   width: 100px;
-  margin: 0;
+  margin: auto;
   padding: 0;
   text-shadow: 3px 0px 3px rgba(255, 84, 77, 0.3);
+  position: relative;
+  top: 30px;
 }
 .current-temperature {
+  display: block;
   font-family: "Rajdhani", sans-serif;
   font-size: 100px;
   font-weight: 600;
   color: #f23645;
   margin: 0;
   padding: 0;
-  position: relative;
-  bottom: 35px;
-  left: 20px;
   text-shadow: 3px 0px 3px rgba(248, 240, 2, 0.116);
+  text-align: center;
 }
 
-.change-unit {
+.temperature-unit {
+  font-family: "Rajdhani", sans-serif;
   color: #71ffff;
-  font-size: 15px;
+  font-size: 25px;
   position: relative;
-  bottom: 40px;
-  right: 20px;
+  bottom: 118px;
+  right: -40px;
   text-shadow: 3px 0px 3px rgba(255, 84, 77, 0.3);
-  font-weight: bold;
 }
-.celsius {
-  margin: 0 auto;
-  border: none;
-  color: #f8ef02;
-  padding: 0;
-  background-color: transparent;
-}
-.fahrenheit {
-  margin: 0 auto;
-  border: none;
-  color: #f8ef02;
-  padding: 0;
-  background-color: transparent;
-}
-.change-unit .active {
-  color: #71ffff;
-  font-weight: bold;
-  cursor: default;
-}
+
 hr {
   border: 2px solid #71ffff;
   box-shadow: 5px 1px 5px darkblue;
   padding: 0;
 }
 
-#forecast {
-  position: relative;
-  left: 20px;
-}
-.forecast-column {
-  text-align: left;
-  margin: 2px auto;
-}
 .days {
+  display: block;
   font-family: "Orbitron", sans-serif;
   font-weight: 200;
   color: #f23645;
-  text-align: center;
   text-shadow: 3px 0px 3px rgba(248, 239, 2, 0.3);
+  text-align: center;
 }
 
 .forecast-temperature {
+  display: block;
   color: #71ffff;
   font-family: "Rajdhani", sans-serif;
   font-size: 16px;
   padding: 0;
   margin: 0;
-  text-align: center;
   text-shadow: 3px 0px 3px rgba(248, 239, 2, 0.3);
+  text-align: center;
 }
 
 .forecast-icon {
+  display: block;
   width: 40px;
-  margin: auto 0;
+  margin: auto;
 }
 
 .credits {

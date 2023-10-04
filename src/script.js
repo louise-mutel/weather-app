@@ -24,9 +24,8 @@ function getForecast(coordinates) {
 function showWeather(response) {
   let cityName = document.querySelector("h1");
   cityName.innerHTML = response.data.name;
-  celsiusTemperature = response.data.main.temp;
-  let temperature = Math.round(celsiusTemperature);
-  let currentTemperature = document.querySelector("#current-temperature");
+  let currentTemperature = document.querySelector(".current-temperature");
+  let temperature = Math.round(response.data.main.temp);
   currentTemperature.innerHTML = `${temperature}`;
   let weatherDescription = document.querySelector(".current-weather");
   weatherDescription.innerHTML = response.data.weather[0].description;
@@ -79,23 +78,6 @@ function getTime() {
   time.innerHTML = `${currentDay}, ${hour}:${minutes}`;
 }
 
-function changeToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temperature");
-  celsius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function changeToCelsius(event) {
-  event.preventDefault();
-  fahrenheit.classList.remove("active");
-  celsius.classList.add("active");
-  let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -131,20 +113,13 @@ function displayForecast(response) {
                 width = "30">
                 <div class="row forecast-temperature">${Math.round(
                   forecastDay.temp.max
-                )}°| ${Math.round(forecastDay.temp.min)}°</div>
+                )}°C | ${Math.round(forecastDay.temp.min)}°C</div>
               </div>`;
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-let celsiusTemperature = null;
-
-let fahrenheit = document.querySelector(".fahrenheit");
-fahrenheit.addEventListener("click", changeToFahrenheit);
-
-let celsius = document.querySelector(".celsius");
-celsius.addEventListener("click", changeToCelsius);
 
 search("Luleå");
 getTime();
