@@ -13,6 +13,14 @@ function search(city) {
   axios.get(apiUrl).then(showWeather);
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "1ee4264117b73d2263eecd562f31ef5c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showWeather(response) {
   let cityName = document.querySelector("h1");
   cityName.innerHTML = response.data.name;
@@ -33,6 +41,8 @@ function showWeather(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentWeatherIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function showPosition(position) {
@@ -86,6 +96,48 @@ function changeToCelsius(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6)
+      forecastHTML =
+        forecastHTML +
+        `<div class="col forecast-column">
+                <div class="row days">${formatDay(forecastDay.dt)}</div>
+                <img class="row forecast-icon"
+                src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
+                width = "30">
+                <div class="row forecast-temperature">${Math.round(
+                  forecastDay.temp.max
+                )}°| ${Math.round(forecastDay.temp.min)}°</div>
+              </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 let celsiusTemperature = null;
 
 let fahrenheit = document.querySelector(".fahrenheit");
@@ -95,3 +147,4 @@ let celsius = document.querySelector(".celsius");
 celsius.addEventListener("click", changeToCelsius);
 
 search("Luleå");
+getTime();
